@@ -1,0 +1,50 @@
+How to execute tests:
+Invoke maven goal surefire report (e.g from terminal > mvn surefire-report:report from the project root)
+To access test report, navigate to target/site/surefire-report.html 
+(note: surefire plugin only generates an html report, to beautify the reports, run > mvn site -Dgenerate.Reports=false)
+
+Requirements: maven (latest preferred), JDK 1.8
+
+Solutions used:
+
+Maven quickstart archetype
+Rest-Assured
+JUnit
+Selenium
+WebDriverManager
+Hamcrest Matchers
+
+You can find more info about them in the project's POM and by looking up their respective websites.
+
+The structure of the project:
+source/
+    -pages/
+        LandingPage.class
+        Pages.class
+        SuccessPage.class
+        -element/
+            CreditCard.class
+test/
+    -driver/
+        ChromeDriverTest.class
+        FirefoxDriverTest.class
+    -functional/
+        FunctionalTest.class
+        RestTest.class
+    -pages/
+        -element/
+            CreditCardTest.class
+            
+Tests found under driver/ are to make sure that the used webdrivermanager can interact with selenium drivers and their respective browser instances. Consider them integration tests.
+
+The pages/elemenmt/CreditCardTest test class is supposed to make sure that the CreditCard implementation works as expected. Consider them unit tests.
+
+The functional/ contains two different subclasses of functional tests:
+
+One is RestTest, supposed to test the test harness' functionality, covering only happy paths, because the mocked service is not able to validate anything without the html front. Even a plain POST request can be executed.
+
+The other is FunctionalTest, consisting of different validations on browser front. Since data validation is -in this case- handled by the html, it contains different tests to validate each field. (note: credit card expiration date is not being tested, since there's no validation on it)
+
+Tested on:
+OSX 10.12.6 with Firefox ESR 52.7 and Chrome Latest
+Windows 10 with Chrome Latest and Firefox Quantum 64
