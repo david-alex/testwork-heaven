@@ -3,7 +3,7 @@ Invoke maven goal surefire report (e.g from terminal > mvn surefire-report:repor
 To access test report, navigate to target/site/surefire-report.html 
 (note: surefire plugin only generates an html report, to beautify the reports, run > mvn site -Dgenerate.Reports=false)
 
-Requirements: maven (latest preferred), JDK 1.8
+Requirements: maven (latest preferred), JDK 1.8, Google Chrome, Firefox
 
 Solutions used:
 
