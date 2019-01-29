@@ -5,10 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LandingPage extends Pages {
-	public LandingPage(WebDriver driver, CreditCard creditCard) {
-		super(driver);
-		this.creditCard = creditCard;
-	}
 
 	private CreditCard creditCard;
 	private By numberBy = By.id("credit_card_number");
@@ -26,6 +22,11 @@ public class LandingPage extends Pages {
 	public By ccSecurityInvalidAlertBy = By.xpath("//small[contains(text(),'CSC should contain only numeric characters') and (@class='help-block')]");
 	public By ccAMountEmptyAlertBy = By.xpath("//small[contains(text(),'Amount cannot be empty')]");
 	public By ccAmountInvalidAlertBy = By.xpath("//small[contains(text(),'Please enter a value with no more than 2 decimal figures') and (@data-bv-validator='regexp')]");
+
+	public LandingPage(WebDriver driver, CreditCard creditCard) {
+		super(driver);
+		this.creditCard = creditCard;
+	}
 
 
 	public void sendFormNumber() {
@@ -47,7 +48,7 @@ public class LandingPage extends Pages {
 	public void sendFormSecurity() {
 		writeText(securityBy, creditCard.getCcSecurityNumber());
 
-		//workaround for no validation on amount input's keypress
+		//workaround for no validation on security input's keypress
 		click(By.xpath("//body"));
 	}
 

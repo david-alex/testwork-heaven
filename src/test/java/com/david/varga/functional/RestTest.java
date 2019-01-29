@@ -42,30 +42,13 @@ public class RestTest {
 	public void testPost() {
 		String responseExpected = "You have successfully deposited 22 £ in your account. If you wish to deposit again, please select a payment method.";
 
-		RestAssured.given(
-		).when(
-		).config(
-				RestAssured.config(
-				).encoderConfig(
-						EncoderConfig.encoderConfig(
-						).encodeContentTypeAs(
-								"x-www-form-urlencoded",ContentType.URLENC
-						)
-				)
-		).contentType(
-				ContentType.URLENC.withCharset(
-						"UTF-8"
-				)
-		).formParam(
-				"amount", "22"
-		).post(
-				"/post"
-		).then(
-		).statusCode(
-				HttpStatus.SC_OK
-		).body(
-				"html.body.main.div", equalToIgnoringWhiteSpace(responseExpected)
-		);
+		RestAssured.given()
+				.when()
+				.config(RestAssured.config().encoderConfig(EncoderConfig.encoderConfig()
+				.encodeContentTypeAs("x-www-form-urlencoded",ContentType.URLENC))).contentType(ContentType.URLENC.withCharset("UTF-8"))
+				.formParam("amount", "22").post("/post")
+				.then()
+				.statusCode(HttpStatus.SC_OK).body("html.body.main.div", equalToIgnoringWhiteSpace(responseExpected));
 
 	}
 
@@ -73,30 +56,12 @@ public class RestTest {
 	public void testPostDecimal() {
 		String responseExpected = "You have successfully deposited 22.4 £ in your account. If you wish to deposit again, please select a payment method.";
 
-		RestAssured.given(
-		).when(
-		).config(
-				RestAssured.config(
-				).encoderConfig(
-						EncoderConfig.encoderConfig(
-						).encodeContentTypeAs(
-								"x-www-form-urlencoded",ContentType.URLENC
-						)
-				)
-		).contentType(
-				ContentType.URLENC.withCharset(
-						"UTF-8"
-				)
-		).formParam(
-				"amount", "22.4"
-		).post(
-				"/post"
-		).then(
-		).statusCode(
-				HttpStatus.SC_OK
-		).body(
-				"html.body.main.div", equalToIgnoringWhiteSpace(responseExpected)
-		);
+		RestAssured.given()
+				.when().config(RestAssured.config().encoderConfig(EncoderConfig.encoderConfig()
+				.encodeContentTypeAs("x-www-form-urlencoded",ContentType.URLENC))).contentType(ContentType.URLENC.withCharset("UTF-8"))
+				.formParam("amount", "22.4").post("/post")
+				.then()
+				.statusCode(HttpStatus.SC_OK).body("html.body.main.div", equalToIgnoringWhiteSpace(responseExpected));
 
 	}
 }

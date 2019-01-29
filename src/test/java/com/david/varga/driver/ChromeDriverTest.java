@@ -1,10 +1,7 @@
 package com.david.varga.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -33,5 +30,9 @@ public class ChromeDriverTest {
 	@Test
 	public void test(){
 		driver.get("http://ec2-52-31-37-213.eu-west-1.compute.amazonaws.com/");
+
+		Assert.assertTrue("URL of the browser doenst match the expected",
+				driver.getCurrentUrl().equalsIgnoreCase("http://ec2-52-31-37-213.eu-west-1.compute.amazonaws.com/"));
+
 	}
 }
